@@ -1,0 +1,6 @@
+[book]
+authors = ["snooze6214"]
+language = "en"
+multilingual = false
+src = "src"
+title = "snooze's notes on AOC2022"
