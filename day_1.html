@@ -74,7 +74,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html" class="active"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html" class="active"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -298,17 +298,35 @@ ok      day1    12.852s
 </code></pre>
 <p>Funnily enough, all solutions benifit from this optimization except for the third
 approach, and honestly I don't quite know why as of now.</p>
+<p><em>Addendum</em>: 
+Actually some of the performance implications from the previous
+benchmark makes sense:</p>
+<ul>
+<li>The sorting solution and three linear pass solution (<code>2a</code> and <code>2b</code>) benifitted 
+the most out of making the underlying datastructure cache friendly, which makes
+sense, because the cache only helps optimize memory access to the same data
+object over and over again. Both sorting and the three linear pass solution 
+have this property, hence the somewhat sizable performance improvement.</li>
+<li>I still dont know why the <code>2c</code> performs worse tho :/ That's something to ponder
+about.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="next" href="day_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="next" href="day_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
