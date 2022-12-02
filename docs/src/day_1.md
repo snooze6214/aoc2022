@@ -181,3 +181,14 @@ ok      day1    12.852s
 
 Funnily enough, all solutions benifit from this optimization except for the third
 approach, and honestly I don't quite know why as of now.
+
+_Addendum_: 
+Actually some of the performance implications from the previous
+benchmark makes sense:
+- The sorting solution and three linear pass solution (`2a` and `2b`) benifitted 
+  the most out of making the underlying datastructure cache friendly, which makes
+  sense, because the cache only helps optimize memory access to the same data
+  object over and over again. Both sorting and the three linear pass solution 
+  have this property, hence the somewhat sizable performance improvement.
+- I still dont know why the `2c` performs worse tho :/ That's something to ponder
+  about.
