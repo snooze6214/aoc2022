@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">3.</strong> Day 3: Rucksack Reorganization</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -316,6 +316,28 @@ about.</li>
 <p>Nothing special going on here other than simply simulating the rules of the
 game.</p>
 <h3 id="also-cool-observation"><a class="header" href="#also-cool-observation">Also cool observation:</a></h3>
+<p>we know:</p>
+<pre><code>      beats         beats
+rock &lt;------ paper &lt;------ scissors
+ |                            ^
+ |                            |
+ l-----------------------------
+         beats
+</code></pre>
+<p>So if we assign to each shape the following values:</p>
+<pre><code>Rock = 0,
+Paper = 1,
+Scissors = 2
+</code></pre>
+<ul>
+<li>Then to find a shape that beats shape <code>x</code>, we just calculate <code>(x + 1) mod 3</code></li>
+<li>Then to find a shape that looses to shape <code>x</code>, we just calculate <code>(x + 2) mod 3</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="day-2-rock-paper-scissors-1"><a class="header" href="#day-2-rock-paper-scissors-1">Day 2: Rock Paper Scissors</a></h1>
+<p><a href="https://adventofcode.com/2022/day/2">Link</a></p>
+<p>Nothing special going on here other than simply simulating the rules of the
+game.</p>
+<h3 id="also-cool-observation-1"><a class="header" href="#also-cool-observation-1">Also cool observation:</a></h3>
 <p>we know:</p>
 <pre><code>      beats         beats
 rock &lt;------ paper &lt;------ scissors
