@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Day 1: Calorie Counting - snooze&#x27;s notes on AOC2022</title>
+        <title>Day 3: Rucksack Reorganization - snooze&#x27;s notes on AOC2022</title>
         <!-- Custom HTML head -->
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,7 +74,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html" class="active"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li><li class="chapter-item expanded "><a href="day_3.html"><strong aria-hidden="true">3.</strong> Day 3: Rucksack Reorganization</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li><li class="chapter-item expanded "><a href="day_3.html" class="active"><strong aria-hidden="true">3.</strong> Day 3: Rucksack Reorganization</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -133,190 +133,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="day-1-calorie-counting"><a class="header" href="#day-1-calorie-counting">Day 1: Calorie Counting</a></h1>
-<p><a href="https://adventofcode.com/2022/day/1">Link</a></p>
-<p>The first day's problem is easy, as expected. For this problem, I think the 
-code will be self explanatory.</p>
-<h2 id="input-handling"><a class="header" href="#input-handling">Input handling:</a></h2>
-<pre><code class="language-go">// elf_inventory.go
-type ElfInventory struct {
-    items []int
-    total int
-}
+                        <h1 id="day-3-rucksack-reorganization"><a class="header" href="#day-3-rucksack-reorganization">Day 3: Rucksack Reorganization</a></h1>
+<p><a href="https://adventofcode.com/2022/day/3">Link</a></p>
+<p>Again easy enough problem. BUT GO HAS NO SETS IN ITS STANDARD LIBRARY AARRRHHH.
+To be fair, it makes sense, GoLang didn't have generics up until 1.18. Now that
+we have generics, I might implement a set datastructure. For now I just abuse
+a <code>map</code> as a set as follows:</p>
+<pre><code class="language-go">var mySet map[int]bool = make(map[int]bool)
 
-func invs_from_string(input string) []ElfInventory {
-    inv_lists := strings.Split(input, &quot;\n\n&quot;)
-    var result []ElfInventory
+// insert key k
+mySet[k] = true
 
-    for _, inv_list_str := range inv_lists {
-        var inv ElfInventory
-        inv_list := strings.Split(inv_list_str, &quot;\n&quot;)
-
-        for _, inv_amt_str := range inv_list {
-            var amt int
-            fmt.Sscan(inv_amt_str, &amp;amt)
-            inv.items = append(inv.items, amt)
-            inv.total += amt
-        }
-        
-        result = append(result, inv)
-    }
-
-    return result
+// check if k is in set
+if mySet[k] {
+    fmt.Println(&quot;YAY&quot;)
 }
 </code></pre>
-<pre><code class="language-go">// main.go
-func main() {
-    input_bytes, err := ioutil.ReadFile(&quot;input&quot;)
-    if err != nil {
-        log.Fatal(&quot;Failed to read input file.&quot;)
-    }
-
-    input := string(input_bytes)
-    inventories := invs_from_string(input)
-
-    // ...
-}
-</code></pre>
-<h2 id="part-1"><a class="header" href="#part-1">Part 1:</a></h2>
-<pre><code class="language-go">func part1(inventories []ElfInventory) int {
-    var max int = -1
-    for _, inv := range inventories {
-        if inv.total &gt; max {
-            max = inv.total
-        }
-    }
-
-    return max
-}
-</code></pre>
-<h2 id="part-2"><a class="header" href="#part-2">Part 2:</a></h2>
-<pre><code class="language-go">// approach 1: Sort and add top 3 (lazy man's approach)
-func part2a(inventories []ElfInventory) int {
-    sort.Slice(inventories, func(i, j int) bool {
-        return inventories[i].total &gt; inventories[j].total
-    })
-
-    return inventories[0].total + inventories[1].total + inventories[2].total
-}
-</code></pre>
-<pre><code class="language-go">// approach 2: Three linear scans
-func part2b(inventories []ElfInventory) int {
-    var top1 int = -1
-    var top2 int = -1
-    var top3 int = -1
-    var t1, t2 int
-
-    for i, inv := range inventories {
-        if inv.total &gt; top1 {
-            top1 = inv.total
-            t1 = i
-        }
-    }
-
-    for i, inv := range inventories {
-        if i != t1 &amp;&amp; inv.total &gt; top2 {
-            top2 = inv.total
-            t2 = i
-        }
-    }
-
-    for i, inv := range inventories {
-        if i != t1 &amp;&amp; i != t2 &amp;&amp; inv.total &gt; top3 {
-            top3 = inv.total
-        }
-    }
-
-    return top1 + top2 + top3
-}
-</code></pre>
-<pre><code class="language-go">// approach 3: Single linear scan
-func part2c(inventories []ElfInventory) int {
-    var top1 int = -1
-    var top2 int = -1
-    var top3 int = -1
-
-    for _, inv := range inventories {
-        if inv.total &gt; top1 {
-            top3 = top2
-            top2 = top1
-            top1 = inv.total
-            continue
-        }
-
-        if inv.total &gt; top2 {
-            top3 = top2
-            top2 = inv.total
-            continue
-        }
-
-        if inv.total &gt; top3 {
-            top3 = inv.total
-        }
-    }
-
-    return top1 + top2 + top3
-}
-
-</code></pre>
-<h3 id="benchmarking"><a class="header" href="#benchmarking">Benchmarking</a></h3>
-<p>Since I ended up with three approaches for part 2, I ended up benchmarking them
-against eachother (using golang's built in benchmarking utility in the <code>testing</code>
-module). Here are the results:</p>
-<pre><code>$ go test -run=Bench -bench=.
-goos: linux
-goarch: amd64
-pkg: day1
-cpu: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
-BenchmarkPart1-8        13796878                85.93 ns/op
-BenchmarkPart2a-8        1570696               768.9 ns/op
-BenchmarkPart2b-8        2083321               578.6 ns/op
-BenchmarkPart2c-8        5433682               225.5 ns/op
-PASS
-ok      day1    6.521s
-</code></pre>
-<h3 id="performance-meme-20"><a class="header" href="#performance-meme-20">Performance meme 2.0</a></h3>
-<p>I wondered how cache friendly having an array of numbers and the total in the 
-struct <code>ElfInventory</code> was. So, I ended up tweeking the program to simply use
-an array of totals. The benchmark results are as follows:</p>
-<pre><code>$ go test -run=Bench -bench=.
-goos: linux
-goarch: amd64
-pkg: day1
-cpu: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
-BenchmarkPart1-8                13914895                86.54 ns/op
-BenchmarkPart2a-8                1536236               768.9 ns/op
-BenchmarkPart2b-8                2039821               584.0 ns/op
-BenchmarkPart2c-8                5441077               221.0 ns/op
-BenchmarkPart1_cache_opt-8      14915084                80.29 ns/op
-BenchmarkPart2a_cache_opt-8      1780618               664.9 ns/op
-BenchmarkPart2b_cache_opt-8      2295934               524.4 ns/op
-BenchmarkPart2c_cache_opt-8      4852630               246.3 ns/op
-PASS
-ok      day1    12.852s
-
-</code></pre>
-<p>Funnily enough, all solutions benifit from this optimization except for the third
-approach, and honestly I don't quite know why as of now.</p>
-<p><em>Addendum</em>: 
-Actually some of the performance implications from the previous
-benchmark makes sense:</p>
-<ul>
-<li>The sorting solution and three linear pass solution (<code>2a</code> and <code>2b</code>) benifitted 
-the most out of making the underlying datastructure cache friendly, which makes
-sense, because the cache only helps optimize memory access to the same data
-object over and over again. Both sorting and the three linear pass solution 
-have this property, hence the somewhat sizable performance improvement.</li>
-<li>I still dont know why the <code>2c</code> performs worse tho :/ That's something to ponder
-about.</li>
-</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="next" href="day_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="day_2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -324,8 +163,8 @@ about.</li>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="next" href="day_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="prev" href="day_2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
             </nav>
 
