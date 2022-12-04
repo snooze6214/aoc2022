@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li><li class="chapter-item expanded "><a href="day_3.html"><strong aria-hidden="true">3.</strong> Day 3: Rucksack Reorganization</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li><li class="chapter-item expanded "><a href="day_3.html"><strong aria-hidden="true">3.</strong> Day 3: Rucksack Reorganization</a></li><li class="chapter-item expanded "><a href="day_4.html"><strong aria-hidden="true">4.</strong> Day 4: Camp Cleanup</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -349,6 +349,29 @@ if mySet[k] {
     fmt.Println(&quot;YAY&quot;)
 }
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="day-4-camp-cleanup"><a class="header" href="#day-4-camp-cleanup">Day 4: Camp Cleanup</a></h1>
+<p><a href="https://adventofcode.com/2022/day/4">Link</a></p>
+<p>Ok I think the most important lesson I learnt from this problem is detecting 
+overlapping ranges. So here we go</p>
+<h2 id="overlapping-ranges"><a class="header" href="#overlapping-ranges">Overlapping ranges</a></h2>
+<p>The problem at hand is to find a sufficient and necessary condition to check
+whether two ranges are overlapping. So I formally define a range as a set of
+numbers that are inbetween a start <code>x</code> and a stop <code>y</code>, inclusive. For notational
+convinience, I denote such a range as <code>[x:y]</code></p>
+<p>Now, I define what I mean by two ranges overlapping. Two ranges <code>A</code> and <code>B</code> are
+said to overlap if there exist some number <code>a</code> such that <code>a</code> is in <code>A</code> and <code>a</code>
+is in <code>B</code> as well. Thus these two inequalities must hold when ranges <code>A</code> and <code>B</code>
+overlap.</p>
+<pre><code>A.start &lt;= a &lt;= A.end
+B.start &lt;= a &lt;= B.end
+</code></pre>
+<p>From the above two inequalities it should be obvious that a necessary condition
+that should hold when <code>A</code> and <code>B</code> overlap are:</p>
+<pre><code>(A.start &lt;= B.end) ^ (B.start &lt;= A.end)
+</code></pre>
+<p>Now to show that this is a sufficient condition, we assume the condition holds.
+Then suppose we choose some <code>a</code> in the range <code>[max(A.start, B.start):B.end]</code>
+then it'll be in both <code>A</code> and <code>B</code>.</p>
 
                     </main>
 
