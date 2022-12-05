@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Day 2: Rock Paper Scissors - snooze&#x27;s notes on AOC2022</title>
+        <title>Day 5: Supply Stack - snooze&#x27;s notes on AOC2022</title>
         <!-- Custom HTML head -->
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,7 +74,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html" class="active"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li><li class="chapter-item expanded "><a href="day_3.html"><strong aria-hidden="true">3.</strong> Day 3: Rucksack Reorganization</a></li><li class="chapter-item expanded "><a href="day_4.html"><strong aria-hidden="true">4.</strong> Day 4: Camp Cleanup</a></li><li class="chapter-item expanded "><a href="day_5.html"><strong aria-hidden="true">5.</strong> Day 5: Supply Stack</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="day_1.html"><strong aria-hidden="true">1.</strong> Day 1: Calorie Counting</a></li><li class="chapter-item expanded "><a href="day_2.html"><strong aria-hidden="true">2.</strong> Day 2: Rock Paper Scissors</a></li><li class="chapter-item expanded "><a href="day_3.html"><strong aria-hidden="true">3.</strong> Day 3: Rucksack Reorganization</a></li><li class="chapter-item expanded "><a href="day_4.html"><strong aria-hidden="true">4.</strong> Day 4: Camp Cleanup</a></li><li class="chapter-item expanded "><a href="day_5.html" class="active"><strong aria-hidden="true">5.</strong> Day 5: Supply Stack</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -133,38 +133,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="day-2-rock-paper-scissors"><a class="header" href="#day-2-rock-paper-scissors">Day 2: Rock Paper Scissors</a></h1>
-<p><a href="https://adventofcode.com/2022/day/2">Link</a></p>
-<p>Nothing special going on here other than simply simulating the rules of the
-game.</p>
-<h3 id="also-cool-observation"><a class="header" href="#also-cool-observation">Also cool observation:</a></h3>
-<p>we know:</p>
-<pre><code>      beats         beats
-rock &lt;------ paper &lt;------ scissors
- |                            ^
- |                            |
- l-----------------------------
-         beats
-</code></pre>
-<p>So if we assign to each shape the following values:</p>
-<pre><code>Rock = 0,
-Paper = 1,
-Scissors = 2
-</code></pre>
-<ul>
-<li>Then to find a shape that beats shape <code>x</code>, we just calculate <code>(x + 1) mod 3</code></li>
-<li>Then to find a shape that looses to shape <code>x</code>, we just calculate <code>(x + 2) mod 3</code></li>
-</ul>
+                        <h1 id="day-5-supply-stacks"><a class="header" href="#day-5-supply-stacks">Day 5: Supply Stacks</a></h1>
+<p><a href="https://adventofcode.com/2022/day/5">Link</a></p>
+<p>Nothing special again, just really annoying input processing. I don't think I
+have much to say today.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="day_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="day_4.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a rel="next" href="day_3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -172,11 +151,8 @@ Scissors = 2
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="day_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="day_4.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a rel="next" href="day_3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
